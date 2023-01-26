@@ -54,7 +54,7 @@
       } = JSON.parse(UrlQueryData);
 
       function sendMessageToRN(msg) {
-        window.ReactNativeWebView.postMessage(JSON.stringify(msg));
+        (window["ReactNativeWebView"]||window).postMessage(JSON.stringify(msg));
       }
 
       let metaString = '';

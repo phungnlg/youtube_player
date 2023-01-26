@@ -6,31 +6,31 @@ export const PLAYER_FUNCTIONS = {
   playVideo: 'player.playVideo(); true;',
   pauseVideo: 'player.pauseVideo(); true;',
   getVideoUrlScript: `
-window.ReactNativeWebView.postMessage(JSON.stringify({eventType: 'getVideoUrl', data: player.getVideoUrl()}));
+(window["ReactNativeWebView"]||window).postMessage(JSON.stringify({eventType: 'getVideoUrl', data: player.getVideoUrl()}));
 true;
   `,
   durationScript: `
-window.ReactNativeWebView.postMessage(JSON.stringify({eventType: 'getDuration', data: player.getDuration()}));
+(window["ReactNativeWebView"]||window).postMessage(JSON.stringify({eventType: 'getDuration', data: player.getDuration()}));
 true;
 `,
   currentTimeScript: `
-window.ReactNativeWebView.postMessage(JSON.stringify({eventType: 'getCurrentTime', data: player.getCurrentTime()}));
+(window["ReactNativeWebView"]||window).postMessage(JSON.stringify({eventType: 'getCurrentTime', data: player.getCurrentTime()}));
 true;
 `,
   isMutedScript: `
-window.ReactNativeWebView.postMessage(JSON.stringify({eventType: 'isMuted', data: player.isMuted()}));
+(window["ReactNativeWebView"]||window).postMessage(JSON.stringify({eventType: 'isMuted', data: player.isMuted()}));
 true;
 `,
   getVolumeScript: `
-window.ReactNativeWebView.postMessage(JSON.stringify({eventType: 'getVolume', data: player.getVolume()}));
+(window["ReactNativeWebView"]||window).postMessage(JSON.stringify({eventType: 'getVolume', data: player.getVolume()}));
 true;
 `,
   getPlaybackRateScript: `
-window.ReactNativeWebView.postMessage(JSON.stringify({eventType: 'getPlaybackRate', data: player.getPlaybackRate()}));
+(window["ReactNativeWebView"]||window).postMessage(JSON.stringify({eventType: 'getPlaybackRate', data: player.getPlaybackRate()}));
 true;
 `,
   getAvailablePlaybackRatesScript: `
-window.ReactNativeWebView.postMessage(JSON.stringify({eventType: 'getAvailablePlaybackRates', data: player.getAvailablePlaybackRates()}));
+(window["ReactNativeWebView"]||window).postMessage(JSON.stringify({eventType: 'getAvailablePlaybackRates', data: player.getAvailablePlaybackRates()}));
 true;
 `,
 
@@ -223,30 +223,30 @@ export const MAIN_SCRIPT = (
       }
 
       function onPlayerError(event) {
-        window.ReactNativeWebView.postMessage(JSON.stringify({eventType: 'playerError', data: event.data}))
+        (window["ReactNativeWebView"]||window).postMessage(JSON.stringify({eventType: 'playerError', data: event.data}))
       }
 
       function onPlaybackRateChange(event) {
-        window.ReactNativeWebView.postMessage(JSON.stringify({eventType: 'playbackRateChange', data: event.data}))
+        (window["ReactNativeWebView"]||window).postMessage(JSON.stringify({eventType: 'playbackRateChange', data: event.data}))
       }
 
       function onPlaybackQualityChange(event) {
-        window.ReactNativeWebView.postMessage(JSON.stringify({eventType: 'playerQualityChange', data: event.data}))
+        (window["ReactNativeWebView"]||window).postMessage(JSON.stringify({eventType: 'playerQualityChange', data: event.data}))
       }
 
       function onPlayerReady(event) {
-        window.ReactNativeWebView.postMessage(JSON.stringify({eventType: 'playerReady'}))
+        (window["ReactNativeWebView"]||window).postMessage(JSON.stringify({eventType: 'playerReady'}))
       }
 
       var done = false;
       function onPlayerStateChange(event) {
-        window.ReactNativeWebView.postMessage(JSON.stringify({eventType: 'playerStateChange', data: event.data}))
+        (window["ReactNativeWebView"]||window).postMessage(JSON.stringify({eventType: 'playerStateChange', data: event.data}))
       }
 
       var isFullScreen = false;
       function onFullScreenChange() {
         isFullScreen = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
-        window.ReactNativeWebView.postMessage(JSON.stringify({eventType: 'fullScreenChange', data: Boolean(isFullScreen)}));
+        (window["ReactNativeWebView"]||window).postMessage(JSON.stringify({eventType: 'fullScreenChange', data: Boolean(isFullScreen)}));
       }
 
       document.addEventListener('fullscreenchange', onFullScreenChange)
